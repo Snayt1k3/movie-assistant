@@ -5,6 +5,8 @@ WORKDIR /backend
 COPY pyproject.toml uv.lock* ./
 COPY common ./common
 COPY api ./api
+COPY alembic.ini ./
+COPY migrations ./migrations
 RUN uv sync --package api --no-dev
 
 ENV PATH="/backend/.venv/bin:$PATH"

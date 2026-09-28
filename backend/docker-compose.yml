@@ -1,9 +1,19 @@
 services:
+  migrate:
+    build: { context: ., dockerfile: api/Dockerfile }
+    env_file: .env
+    working_dir: /backend
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      postgres: { condition: service_healthy }
+
   api:
     build: { context: ., dockerfile: api/Dockerfile }
     env_file: .env
     ports: ["8000:8000"]
-    depends_on: [postgres, redis]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_started }
 
   bot:
     build: { context: ., dockerfile: bot/Dockerfile }
@@ -13,7 +23,9 @@ services:
   cron:
     build: { context: ., dockerfile: cron/Dockerfile }
     env_file: .env
-    depends_on: [postgres, redis]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_started }
 
   postgres:
     image: postgres:16
@@ -23,6 +35,10 @@ services:
       POSTGRES_DB: seans
     ports: ["5432:5432"]
     volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U seans"]
+      interval: 2s
+      retries: 15
 
   redis:
     image: redis:7

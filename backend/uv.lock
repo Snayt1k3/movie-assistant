@@ -209,6 +209,7 @@ name = "api"
 version = "0.1.0"
 source = { virtual = "api" }
 dependencies = [
+    { name = "alembic" },
     { name = "common" },
     { name = "fastapi" },
     { name = "httpx" },
@@ -218,6 +219,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "alembic", specifier = ">=1.13" },
     { name = "common", editable = "common" },
     { name = "fastapi", specifier = ">=0.115" },
     { name = "httpx", specifier = ">=0.27" },
@@ -1216,7 +1218,6 @@ source = { virtual = "." }
 
 [package.dev-dependencies]
 dev = [
-    { name = "alembic" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
     { name = "ruff" },
@@ -1226,7 +1227,6 @@ dev = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "alembic", specifier = ">=1.13" },
     { name = "pytest", specifier = ">=8" },
     { name = "pytest-asyncio", specifier = ">=0.24" },
     { name = "ruff", specifier = ">=0.6" },
