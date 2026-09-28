@@ -357,6 +357,7 @@ dependencies = [
     { name = "apscheduler" },
     { name = "common" },
     { name = "httpx" },
+    { name = "redis" },
 ]
 
 [package.metadata]
@@ -364,6 +365,7 @@ requires-dist = [
     { name = "apscheduler", specifier = ">=3.10,<4" },
     { name = "common", editable = "common" },
     { name = "httpx", specifier = ">=0.27" },
+    { name = "redis", specifier = ">=5" },
 ]
 
 [[package]]
