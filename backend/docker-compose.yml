@@ -1,0 +1,32 @@
+services:
+  api:
+    build: { context: ., dockerfile: api/Dockerfile }
+    env_file: .env
+    ports: ["8000:8000"]
+    depends_on: [postgres, redis]
+
+  bot:
+    build: { context: ., dockerfile: bot/Dockerfile }
+    env_file: .env
+    depends_on: [api]
+
+  cron:
+    build: { context: ., dockerfile: cron/Dockerfile }
+    env_file: .env
+    depends_on: [postgres, redis]
+
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: seans
+      POSTGRES_PASSWORD: seans
+      POSTGRES_DB: seans
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
+
+volumes:
+  pgdata:

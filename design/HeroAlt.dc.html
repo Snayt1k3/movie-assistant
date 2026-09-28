@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#0A0A0C;-webkit-font-smoothing:antialiased;}
+  a{color:#E9B15A;text-decoration:none;}
+  a:hover{color:#F3C87F;}
+  .wrap{width:100%;max-width:1180px;margin:0 auto;padding-left:clamp(20px,5vw,56px);padding-right:clamp(20px,5vw,56px);}
+  .serif{font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-weight:400;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8C8798;margin:0;}
+  .lead{font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:#A19DAB;margin:0;text-wrap:pretty;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:52px;padding:0 26px;border-radius:14px;font-size:15px;font-weight:700;border:0;white-space:nowrap;}
+  .btn-primary{background:#E9B15A;color:#17120A;}
+  .btn-primary:hover{background:#F3C87F;color:#17120A;}
+  .btn-ghost{background:rgba(10,10,12,.55);color:#F5F3F7;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15);}
+  .btn-ghost:hover{color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.34);}
+  .ring{position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.09);pointer-events:none;}
+  .grain{position:absolute;inset:0;opacity:.24;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .ph{display:inline-block;border:1px dashed rgba(233,177,90,.5);border-radius:8px;color:#E9B15A;background:rgba(233,177,90,.07);padding:3px 8px;font-size:12px;font-weight:600;}
+  .wall{position:absolute;top:-14%;left:-16%;width:132%;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:16px;transform:rotate(-7deg);opacity:.62;}
+  @media (max-width:900px){.deskonly{display:none !important;}}
+</style>
+</helmet>
+
+<div style="width:100%;min-height:900px;background:#0A0A0C;color:#F5F3F7;font-family:Manrope,system-ui,-apple-system,sans-serif;position:relative;overflow:hidden;display:flex;flex-direction:column;">
+
+  <div class="wall">
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(158deg,#C97A3C,#5A2E18 62%,#1B0F0A);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(162deg,#7FA6B5,#22333D 66%,#0D1519);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(150deg,#6B5B3E,#2A2118);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(168deg,#E0894A,#7A2E3C 55%,#160A12);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(155deg,#2F5B4E,#101A18);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(170deg,#5C6E7A,#0E1216);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(148deg,#8A5B4A,#2A1A18);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(160deg,#3A3F52,#12141C);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(152deg,#B0563F,#331512);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(158deg,#C97A3C,#5A2E18 62%,#1B0F0A);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(162deg,#7FA6B5,#22333D 66%,#0D1519);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(150deg,#6B5B3E,#2A2118);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(168deg,#E0894A,#7A2E3C 55%,#160A12);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(155deg,#2F5B4E,#101A18);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(170deg,#5C6E7A,#0E1216);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(148deg,#8A5B4A,#2A1A18);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(160deg,#3A3F52,#12141C);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(152deg,#B0563F,#331512);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(158deg,#C97A3C,#5A2E18 62%,#1B0F0A);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(162deg,#7FA6B5,#22333D 66%,#0D1519);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(150deg,#6B5B3E,#2A2118);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(168deg,#E0894A,#7A2E3C 55%,#160A12);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(155deg,#2F5B4E,#101A18);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(170deg,#5C6E7A,#0E1216);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(148deg,#8A5B4A,#2A1A18);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(160deg,#3A3F52,#12141C);"><div class="ring"></div></div>
+        <div style="aspect-ratio:2/3;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(152deg,#B0563F,#331512);"><div class="ring"></div></div>
+  </div>
+
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.72) 0%,rgba(10,10,12,.9) 42%,#0A0A0C 88%);pointer-events:none;"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(48% 42% at 50% 44%,rgba(233,177,90,.15),rgba(10,10,12,0) 72%);pointer-events:none;"></div>
+  <div class="grain"></div>
+
+  <header style="position:relative;z-index:5;">
+    <div class="wrap" style="display:flex;align-items:center;gap:22px;height:84px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg>
+        <span class="serif" style="font-size:25px;letter-spacing:-.01em;">Сеанс</span>
+      </div>
+      <div class="deskonly" style="display:flex;gap:26px;margin-left:20px;">
+        <a href="#" style="font-size:14px;font-weight:500;color:#A19DAB;">Возможности</a>
+        <a href="#" style="font-size:14px;font-weight:500;color:#A19DAB;">Как это работает</a>
+        <a href="#" style="font-size:14px;font-weight:500;color:#A19DAB;">Тарифы</a>
+      </div>
+      <div style="flex-grow:1;"></div>
+      <a href="#" class="btn btn-ghost deskonly" style="height:44px;padding:0 18px;font-size:14px;">Войти</a>
+      <a href="#" class="btn btn-primary" style="height:44px;padding:0 20px;font-size:14px;">Начать бесплатно</a>
+    </div>
+  </header>
+
+  <div class="wrap" style="position:relative;z-index:4;flex-grow:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:28px;padding-top:40px;padding-bottom:72px;">
+    <p class="eyebrow">Фильмы · сериалы · аниме</p>
+    <h1 class="serif" style="margin:0;max-width:900px;font-size:clamp(44px,6.4vw,88px);line-height:1;letter-spacing:-.025em;text-wrap:balance;">Смотреть просто. <span style="color:#E9B15A;font-style:italic;">Помнить</span> — сложнее</h1>
+    <p class="lead" style="max-width:600px;">Сеанс держит счёт за вас: на какой вы серии, что уже оценили и когда выходит продолжение. И показывает, что смотрят друзья.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+      <a href="#" class="btn btn-primary">Начать бесплатно
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+        Как это работает</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <div style="display:flex;">
+        <div style="width:32px;height:32px;border-radius:99px;background:#3C4A63;box-shadow:0 0 0 2px #0A0A0C;"></div>
+        <div style="width:32px;height:32px;border-radius:99px;background:#5A4A63;box-shadow:0 0 0 2px #0A0A0C;margin-left:-11px;"></div>
+        <div style="width:32px;height:32px;border-radius:99px;background:#63533C;box-shadow:0 0 0 2px #0A0A0C;margin-left:-11px;"></div>
+        <div style="width:32px;height:32px;border-radius:99px;background:#3C6355;box-shadow:0 0 0 2px #0A0A0C;margin-left:-11px;"></div>
+      </div>
+      <span style="font-size:13.5px;color:#8C8798;">Сегодня в Сеансе отметили <span class="ph">[N]</span> серий</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

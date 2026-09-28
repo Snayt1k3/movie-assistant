@@ -1,0 +1,459 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#0A0A0C;-webkit-font-smoothing:antialiased;}
+  a{color:#E9B15A;text-decoration:none;}
+  a:hover{color:#F3C87F;}
+  .wrap{width:100%;max-width:1180px;margin:0 auto;padding-left:clamp(20px,5vw,56px);padding-right:clamp(20px,5vw,56px);}
+  .sec{padding-top:clamp(44px,7vw,108px);padding-bottom:clamp(44px,7vw,108px);}
+  .serif{font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-weight:400;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8C8798;margin:0;}
+  .h1{font-size:clamp(40px,5.4vw,74px);line-height:1.02;letter-spacing:-.02em;margin:0;text-wrap:balance;}
+  .h2{font-size:clamp(29px,3.5vw,46px);line-height:1.08;letter-spacing:-.015em;margin:0;text-wrap:balance;}
+  .h3{font-size:19px;font-weight:700;line-height:1.3;letter-spacing:-.005em;margin:0;}
+  .lead{font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:#A19DAB;margin:0;text-wrap:pretty;}
+  .body{font-size:14.5px;line-height:1.65;color:#A19DAB;margin:0;text-wrap:pretty;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:52px;padding:0 26px;border-radius:14px;font-size:15px;font-weight:700;border:0;white-space:nowrap;}
+  .btn-primary{background:#E9B15A;color:#17120A;}
+  .btn-primary:hover{background:#F3C87F;color:#17120A;}
+  .btn-ghost{background:rgba(10,10,12,.55);color:#F5F3F7;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15);}
+  .btn-ghost:hover{color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(255,255,255,.34);}
+  .card{background:#131217;border-radius:22px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);}
+  .grain{position:absolute;inset:0;opacity:.24;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .ring{position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.09);pointer-events:none;}
+  .ph{display:inline-block;border:1px dashed rgba(233,177,90,.5);border-radius:8px;color:#E9B15A;background:rgba(233,177,90,.07);padding:3px 8px;font-size:12px;font-weight:600;}
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(246px,1fr));gap:18px;}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(262px,1fr));gap:18px;}
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(304px,1fr));gap:22px;}
+  .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(34px,5vw,68px);align-items:center;}
+  .chip{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;}
+  @media (max-width:900px){.deskonly{display:none !important;}}
+  @media (max-width:720px){.float{display:none !important;}}
+</style>
+</helmet>
+
+<div style="width:100%;background:#0A0A0C;color:#F5F3F7;font-family:Manrope,system-ui,-apple-system,sans-serif;overflow:hidden;position:relative;">
+
+  <!-- NAV -->
+  <header style="position:relative;z-index:5;">
+    <div class="wrap" style="display:flex;align-items:center;gap:22px;height:84px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg>
+        <span class="serif" style="font-size:25px;letter-spacing:-.01em;">Сеанс</span>
+      </div>
+      <div class="deskonly" style="display:flex;gap:26px;margin-left:20px;">
+        <a href="#" style="font-size:14px;font-weight:500;color:#A19DAB;">Возможности</a>
+        <a href="#" style="font-size:14px;font-weight:500;color:#A19DAB;">Как это работает</a>
+        <a href="#" style="font-size:14px;font-weight:500;color:#A19DAB;">Тарифы</a>
+      </div>
+      <div style="flex-grow:1;"></div>
+      <a href="#" class="btn btn-ghost deskonly" style="height:44px;padding:0 18px;font-size:14px;">Войти</a>
+      <a href="#" class="btn btn-primary" style="height:44px;padding:0 20px;font-size:14px;">Начать бесплатно</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-260px;left:-140px;width:900px;height:700px;background:radial-gradient(50% 50% at 50% 50%,rgba(233,177,90,.13),rgba(10,10,12,0));pointer-events:none;"></div>
+    <div style="position:absolute;top:-120px;right:-200px;width:760px;height:640px;background:radial-gradient(50% 50% at 50% 50%,rgba(90,130,233,.10),rgba(10,10,12,0));pointer-events:none;"></div>
+    <div class="grain"></div>
+
+    <div class="wrap" style="position:relative;z-index:2;padding-top:clamp(40px,5vw,80px);padding-bottom:clamp(60px,7vw,104px);">
+      <div class="split">
+
+        <div style="display:flex;flex-direction:column;gap:26px;max-width:580px;">
+          <p class="eyebrow">Фильмы · сериалы · аниме</p>
+          <h1 class="serif h1">Кинодневник, который помнит, на какой вы серии</h1>
+          <p class="lead">Отмечайте просмотренное одной кнопкой, получайте напоминание в день выхода новой серии и смотрите, что оценили друзья. Одна библиотека вместо четырёх приложений.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;">
+            <a href="#" class="btn btn-primary">Начать бесплатно
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#" class="btn btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6L19 12z"/></svg>
+              Как это работает</a>
+          </div>
+          <div style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:#6E6A78;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4 10-10"/></svg>
+            Без карты. Импорт библиотеки занимает около минуты.
+          </div>
+        </div>
+
+        <!-- PRODUCT MOCK -->
+        <div style="position:relative;min-width:0;">
+          <div class="card" style="position:relative;padding:22px;display:flex;flex-direction:column;gap:18px;background:#131217;box-shadow:0 40px 90px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.07);">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+              <p class="eyebrow" style="font-size:11px;">Смотрю сейчас</p>
+              <span style="font-size:11.5px;color:#6E6A78;">4 сериала</span>
+            </div>
+
+            <div style="display:flex;gap:16px;">
+              <div style="position:relative;width:82px;height:118px;border-radius:12px;flex:none;overflow:hidden;background:linear-gradient(158deg,#7FA6B5,#22333D 66%,#0D1519);">
+                <div class="grain"></div><div class="ring"></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;flex-grow:1;min-width:0;">
+                <div style="display:flex;flex-direction:column;gap:3px;">
+                  <span class="serif" style="font-size:24px;line-height:1.1;">Разделение</span>
+                  <span style="font-size:12.5px;color:#6E6A78;">Сезон 2 · Серия 4 из 10</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="height:6px;border-radius:99px;background:#26242C;flex-grow:1;overflow:hidden;">
+                    <div style="width:40%;height:100%;border-radius:99px;background:#E9B15A;"></div>
+                  </div>
+                  <span style="font-size:12px;font-weight:700;color:#E9B15A;">40%</span>
+                </div>
+                <a href="#" class="btn btn-primary" style="height:44px;font-size:14px;padding:0 18px;align-self:flex-start;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                  Отметить серию</a>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:7px;">
+              <div class="chip" style="background:#E9B15A;color:#17120A;">1</div>
+              <div class="chip" style="background:#E9B15A;color:#17120A;">2</div>
+              <div class="chip" style="background:#E9B15A;color:#17120A;">3</div>
+              <div class="chip" style="background:#E9B15A;color:#17120A;">4</div>
+              <div class="chip" style="background:#1C1B21;color:#6E6A78;">5</div>
+              <div class="chip" style="background:#1C1B21;color:#6E6A78;">6</div>
+              <div class="chip" style="background:#1C1B21;color:#6E6A78;">7</div>
+              <div class="chip" style="background:#1C1B21;color:#6E6A78;">8</div>
+              <div class="chip" style="background:#1C1B21;color:#6E6A78;">9</div>
+              <div class="chip" style="background:#1C1B21;color:#6E6A78;">10</div>
+            </div>
+
+            <div style="height:1px;background:rgba(255,255,255,.07);"></div>
+
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8C8798" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              <span style="font-size:13px;color:#A19DAB;">Следующая серия — в пятницу, <span class="ph" style="padding:1px 6px;">[дата]</span></span>
+            </div>
+          </div>
+
+          <div class="card float" style="position:absolute;left:-34px;bottom:-40px;width:268px;padding:14px 16px;display:flex;align-items:center;gap:12px;background:#1A1920;box-shadow:0 24px 60px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.09);">
+            <div style="width:38px;height:38px;border-radius:12px;flex:none;background:rgba(233,177,90,.14);display:flex;align-items:center;justify-content:center;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px;min-width:0;">
+              <span style="font-size:13px;font-weight:700;">Вышла новая серия</span>
+              <span style="font-size:12px;color:#8C8798;">«Дом Дракона» · 2 сезон, 6 серия</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ИНТЕГРАЦИИ -->
+  <section style="border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);">
+    <div class="wrap" style="padding-top:28px;padding-bottom:28px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 36px;">
+      <p class="eyebrow" style="color:#6E6A78;">Импорт и синхронизация</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px 30px;flex-grow:1;">
+        <span style="font-size:15px;font-weight:600;color:#8C8798;">Кинопоиск</span>
+        <span style="font-size:15px;font-weight:600;color:#8C8798;">TMDB</span>
+        <span style="font-size:15px;font-weight:600;color:#8C8798;">Letterboxd</span>
+        <span style="font-size:15px;font-weight:600;color:#8C8798;">Shikimori</span>
+        <span style="font-size:15px;font-weight:600;color:#8C8798;">AniList</span>
+        <span style="font-size:15px;font-weight:600;color:#8C8798;">Trakt</span>
+      </div>
+      <span class="ph">[подтвердите список к запуску]</span>
+    </div>
+  </section>
+
+  <!-- ВОЗМОЖНОСТИ -->
+  <section class="sec">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:44px;">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:660px;">
+        <p class="eyebrow">Возможности</p>
+        <h2 class="serif h2">Четыре вещи, ради которых заводят трекер</h2>
+      </div>
+      <div class="grid4">
+
+        <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:14px;">
+          <div style="width:44px;height:44px;border-radius:14px;background:rgba(233,177,90,.13);display:flex;align-items:center;justify-content:center;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+          <h3 class="h3">Прогресс по сериям</h3>
+          <p class="body">Одна кнопка — и сериал сдвинулся на серию вперёд. Сеанс помнит сезон, номер и дату, когда вы остановились.</p>
+        </div>
+
+        <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:14px;">
+          <div style="width:44px;height:44px;border-radius:14px;background:rgba(233,177,90,.13);display:flex;align-items:center;justify-content:center;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          </div>
+          <h3 class="h3">Календарь выходов</h3>
+          <p class="body">Расписание только по вашим сериалам и напоминание в день выхода. Ничего лишнего в списке.</p>
+        </div>
+
+        <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:14px;">
+          <div style="width:44px;height:44px;border-radius:14px;background:rgba(233,177,90,.13);display:flex;align-items:center;justify-content:center;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.5 20c0-3.4 2.9-5.2 6.5-5.2s6.5 1.8 6.5 5.2"/><path d="M16.5 5.2a3.4 3.4 0 0 1 0 6.6M18 14.9c2.2.6 3.5 2.1 3.5 5.1"/></svg>
+          </div>
+          <h3 class="h3">Лента друзей</h3>
+          <p class="body">Оценки и рецензии людей, чьему вкусу вы доверяете. Хронологическая лента, без рекомендательного алгоритма.</p>
+        </div>
+
+        <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:14px;">
+          <div style="width:44px;height:44px;border-radius:14px;background:rgba(233,177,90,.13);display:flex;align-items:center;justify-content:center;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5 12 4l9 4.5-9 4.5z"/><path d="m3 13 9 4.5 9-4.5"/></svg>
+          </div>
+          <h3 class="h3">Один список на всё</h3>
+          <p class="body">Фильмы, сериалы и аниме в одной библиотеке — с общей статистикой, историей и оценками по одной шкале.</p>
+        </div>
+
+      </div>
+
+      <div class="card" style="padding:clamp(24px,3vw,34px);display:flex;flex-wrap:wrap;align-items:center;gap:24px;background:linear-gradient(120deg,#17151C,#121116);">
+        <div style="width:48px;height:48px;border-radius:15px;flex:none;background:rgba(123,196,154,.14);display:flex;align-items:center;justify-content:center;">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.5-6.5 9-6.5c1.6 0 3 .5 4.2 1.3M21 12s-3.5 6.5-9 6.5c-1.7 0-3.2-.6-4.4-1.4"/><path d="M4 3.5 20 20.5"/></svg>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px;flex-grow:1;min-width:260px;">
+          <h3 class="h3">Лента не спойлерит</h3>
+          <p class="body">Обсуждения и оценки серий, до которых вы ещё не дошли, скрыты до тех пор, пока вы не отметите эти серии. Это включено по умолчанию.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАК ЭТО РАБОТАЕТ -->
+  <section class="sec" style="border-top:1px solid rgba(255,255,255,.07);">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:44px;">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:660px;">
+        <p class="eyebrow">Как это работает</p>
+        <h2 class="serif h2">Три шага, дальше всё само</h2>
+      </div>
+      <div class="grid3">
+        <div style="display:flex;flex-direction:column;gap:14px;padding-top:22px;border-top:1px solid rgba(233,177,90,.34);">
+          <span class="serif" style="font-size:44px;line-height:1;color:#E9B15A;">01</span>
+          <h3 class="h3">Перенесите библиотеку</h3>
+          <p class="body">Загрузите файл выгрузки из Кинопоиска, Letterboxd или Shikimori. Оценки и даты просмотра сохраняются.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);">
+          <span class="serif" style="font-size:44px;line-height:1;color:#4B4756;">02</span>
+          <h3 class="h3">Отмечайте по ходу</h3>
+          <p class="body">Кнопка «+1 серия» на сайте или ответ на уведомление в мессенджере. Заходить специально не придётся.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);">
+          <span class="serif" style="font-size:44px;line-height:1;color:#4B4756;">03</span>
+          <h3 class="h3">Позовите своих</h3>
+          <p class="body">Подписывайтесь на друзей, спорьте в карточке фильма и собирайте общие подборки на вечер.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- МЕССЕНДЖЕР -->
+  <section class="sec" style="position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,.07);">
+    <div style="position:absolute;top:0;right:-180px;width:680px;height:560px;background:radial-gradient(50% 50% at 50% 50%,rgba(233,177,90,.09),rgba(10,10,12,0));pointer-events:none;"></div>
+    <div class="wrap" style="position:relative;z-index:2;">
+      <div class="split">
+        <div style="display:flex;flex-direction:column;gap:22px;max-width:520px;">
+          <p class="eyebrow">В мессенджере</p>
+          <h2 class="serif h2">Отметить серию можно, не открывая сайт</h2>
+          <p class="lead">Бот присылает уведомление в день выхода. Одно нажатие — прогресс обновлён, следующая серия уже в календаре.</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:flex-start;gap:11px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg>
+              <span class="body" style="color:#C9C5D2;">Поиск и добавление в список прямо в чате</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:11px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg>
+              <span class="body" style="color:#C9C5D2;">Оценка сразу после просмотра, пока не забылось</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:11px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg>
+              <span class="body" style="color:#C9C5D2;">Общий список для компании — что смотрим в пятницу</span>
+            </div>
+          </div>
+          <a href="#" class="btn btn-ghost" style="align-self:flex-start;">Подключить бота</a>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;min-width:0;">
+          <div class="card" style="padding:18px;display:flex;flex-direction:column;gap:14px;background:#16151B;">
+            <div style="display:flex;gap:12px;align-items:center;">
+              <div style="width:40px;height:40px;border-radius:13px;flex:none;background:linear-gradient(150deg,#E9B15A,#A9702A);display:flex;align-items:center;justify-content:center;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17120A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <span style="font-size:14px;font-weight:700;">Сеанс</span>
+                <span style="font-size:11.5px;color:#6E6A78;">только что</span>
+              </div>
+            </div>
+            <p class="body" style="color:#E4E1EA;font-size:15px;">Вышла 5-я серия «Разделения». Отметить как просмотренную?</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span class="btn btn-primary" style="height:42px;font-size:13.5px;padding:0 16px;">Отметить</span>
+              <span class="btn btn-ghost" style="height:42px;font-size:13.5px;padding:0 16px;">Напомнить завтра</span>
+            </div>
+          </div>
+          <div class="card" style="padding:16px 18px;display:flex;align-items:center;gap:12px;background:#16151B;">
+            <div style="width:34px;height:34px;border-radius:11px;flex:none;background:rgba(123,196,154,.16);display:flex;align-items:center;justify-content:center;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4 10-10"/></svg>
+            </div>
+            <span class="body" style="color:#C9C5D2;">Готово. Следующая серия — через неделю.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЦИФРЫ И ОТЗЫВЫ -->
+  <section class="sec" style="border-top:1px solid rgba(255,255,255,.07);">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:34px;">
+      <div class="grid3">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span class="serif" style="font-size:46px;line-height:1;color:#E9B15A;">[12 400]</span>
+          <span class="body">зрителей ведут список в Сеансе</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span class="serif" style="font-size:46px;line-height:1;color:#E9B15A;">[1,8 млн]</span>
+          <span class="body">серий отмечено за последний год</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <span class="serif" style="font-size:46px;line-height:1;color:#E9B15A;">[38 сек]</span>
+          <span class="body">среднее время импорта библиотеки</span>
+        </div>
+      </div>
+      <p class="ph" style="align-self:flex-start;">[замените на реальные цифры перед публикацией]</p>
+
+      <div class="grid2">
+        <div class="card" style="padding:26px;display:flex;flex-direction:column;gap:18px;border:1px dashed rgba(233,177,90,.34);box-shadow:none;background:#111015;">
+          <p class="body" style="font-size:16px;line-height:1.6;color:#C9C5D2;">[Цитата пользователя: за что именно он держит Сеанс вместо заметок в телефоне. Две-три строки, своими словами.]</p>
+          <div style="display:flex;align-items:center;gap:11px;">
+            <div style="width:36px;height:36px;border-radius:99px;background:#26242C;"></div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="font-size:13.5px;font-weight:600;color:#8C8798;">[имя]</span>
+              <span style="font-size:12px;color:#5C586A;">[кто, откуда]</span>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:26px;display:flex;flex-direction:column;gap:18px;border:1px dashed rgba(233,177,90,.34);box-shadow:none;background:#111015;">
+          <p class="body" style="font-size:16px;line-height:1.6;color:#C9C5D2;">[Вторая цитата — лучше про социальную часть: как подборки друзей меняют то, что человек включает вечером.]</p>
+          <div style="display:flex;align-items:center;gap:11px;">
+            <div style="width:36px;height:36px;border-radius:99px;background:#26242C;"></div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <span style="font-size:13.5px;font-weight:600;color:#8C8798;">[имя]</span>
+              <span style="font-size:12px;color:#5C586A;">[кто, откуда]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ТАРИФЫ -->
+  <section class="sec" style="border-top:1px solid rgba(255,255,255,.07);">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:44px;">
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:660px;">
+        <p class="eyebrow">Тарифы</p>
+        <h2 class="serif h2">Трекер бесплатный. Платите, если хотите больше</h2>
+      </div>
+      <div class="grid2">
+
+        <div class="card" style="padding:30px;display:flex;flex-direction:column;gap:22px;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-size:14px;font-weight:700;letter-spacing:.02em;color:#A19DAB;">Зритель</span>
+            <div style="display:flex;align-items:baseline;gap:8px;">
+              <span class="serif" style="font-size:52px;line-height:1;">0 ₽</span>
+              <span style="font-size:14px;color:#6E6A78;">навсегда</span>
+            </div>
+          </div>
+          <div style="height:1px;background:rgba(255,255,255,.07);"></div>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg><span class="body" style="color:#C9C5D2;">Библиотека без ограничений по размеру</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg><span class="body" style="color:#C9C5D2;">Прогресс по сериям и календарь выходов</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg><span class="body" style="color:#C9C5D2;">Лента друзей, оценки и рецензии</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#7BC49A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg><span class="body" style="color:#C9C5D2;">Бот в мессенджере</span></div>
+          </div>
+          <a href="#" class="btn btn-ghost" style="width:100%;">Начать бесплатно</a>
+        </div>
+
+        <div class="card" style="position:relative;padding:30px;display:flex;flex-direction:column;gap:22px;background:linear-gradient(150deg,#1E1A16,#131217);box-shadow:inset 0 0 0 1px rgba(233,177,90,.34);">
+          <div style="position:absolute;top:26px;right:30px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E9B15A;">Популярный</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <span style="font-size:14px;font-weight:700;letter-spacing:.02em;color:#E9B15A;">Киноман</span>
+            <div style="display:flex;align-items:baseline;gap:8px;">
+              <span class="serif" style="font-size:52px;line-height:1;">[цена] ₽</span>
+              <span style="font-size:14px;color:#8C8798;">в месяц</span>
+            </div>
+          </div>
+          <div style="height:1px;background:rgba(233,177,90,.2);"></div>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg><span class="body" style="color:#D8D4DF;">Всё из «Зрителя»</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg><span class="body" style="color:#D8D4DF;">Итоги года: жанры, режиссёры, часы, рекорды</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg><span class="body" style="color:#D8D4DF;">Приватные подборки и совместные списки</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="m5 13 4 4 10-10"/></svg><span class="body" style="color:#D8D4DF;">Экспорт данных и ранний доступ к новому</span></div>
+          </div>
+          <a href="#" class="btn btn-primary" style="width:100%;">Попробовать 14 дней</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ФИНАЛЬНЫЙ ПРИЗЫВ -->
+  <section style="position:relative;overflow:hidden;border-top:1px solid rgba(255,255,255,.07);">
+    <div style="position:absolute;bottom:-320px;left:50%;transform:translateX(-50%);width:1100px;height:640px;background:radial-gradient(50% 50% at 50% 50%,rgba(233,177,90,.16),rgba(10,10,12,0));pointer-events:none;"></div>
+    <div class="wrap sec" style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center;">
+      <h2 class="serif h2" style="max-width:620px;">Начните вести список сегодня вечером</h2>
+      <p class="lead" style="max-width:520px;">Перенесите то, что уже посмотрели, и отметьте первую серию. Дальше Сеанс держит счёт сам.</p>
+      <a href="#" class="btn btn-primary" style="height:56px;padding:0 32px;font-size:16px;">Начать бесплатно
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+      <span style="font-size:13px;color:#6E6A78;">Без карты · импорт за минуту · удаление аккаунта в один клик</span>
+    </div>
+  </section>
+
+  <!-- ПОДВАЛ -->
+  <footer style="border-top:1px solid rgba(255,255,255,.07);">
+    <div class="wrap" style="padding-top:52px;padding-bottom:40px;display:flex;flex-direction:column;gap:44px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E9B15A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M3 15h18M8 4v16M16 4v16"/></svg>
+            <span class="serif" style="font-size:22px;">Сеанс</span>
+          </div>
+          <span style="font-size:13px;line-height:1.6;color:#6E6A78;max-width:220px;">Кинодневник и трекер сериалов с лентой друзей.</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5C586A;">Продукт</span>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Возможности</a>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Тарифы</a>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Импорт данных</a>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Бот в мессенджере</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5C586A;">Сообщество</span>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Подборки недели</a>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Клубы</a>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Блог</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5C586A;">Правовая информация</span>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Условия</a>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Конфиденциальность</a>
+          <a href="#" style="font-size:14px;color:#A19DAB;">Контакты</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.07);">
+        <span style="font-size:12.5px;color:#5C586A;">© 2026 Сеанс</span>
+        <span style="font-size:12.5px;color:#5C586A;">Данные о фильмах — <span class="ph" style="padding:1px 6px;">[укажите источник]</span></span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":5400}}'>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>
