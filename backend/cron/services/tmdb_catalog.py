@@ -1,5 +1,6 @@
 from collections.abc import Callable
 
+from common.uow import SqlAlchemyUnitOfWork
 from schemas.tmdb import Movie, Season, TMDBKind, Tv
 from utils.tmdb_mapping import (
     IMDB_PROVIDER,
@@ -14,7 +15,7 @@ from common.interfaces import AbstractUow
 
 
 class TMDBCatalogService:
-    def __init__(self, uow_factory: Callable[[], AbstractUow]):
+    def __init__(self, uow_factory: Callable[[], SqlAlchemyUnitOfWork]):
         self.uow_factory = uow_factory
 
     async def known_ids(self, kind: TMDBKind) -> set[int]:

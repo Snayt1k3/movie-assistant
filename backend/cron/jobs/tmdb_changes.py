@@ -18,6 +18,7 @@ async def sync_tmdb_changes(limit: int | None = None) -> None:
     TMDB отдаёт изменения не больше чем за 14 дней, более старые пропуски не догнать.
     """
     today = datetime.datetime.now(datetime.UTC).date()
+
     async with tmdb_sync_service() as sync:
         oldest = today - datetime.timedelta(days=CHANGES_MAX_DAYS - 1)
         start = await sync.state.changes_cursor() or today - datetime.timedelta(days=1)

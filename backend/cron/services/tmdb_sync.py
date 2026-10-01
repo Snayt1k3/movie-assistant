@@ -41,9 +41,11 @@ class TMDBSyncService:
     async def sync_many(self, kind: TMDBKind, ids: list[int]) -> Counter[SyncResult]:
         stats: Counter[SyncResult] = Counter()
         started = time.monotonic()
+
         for i in range(0, len(ids), BATCH_SIZE):
-            batch = ids[i : i + BATCH_SIZE]
+            batch = ids[i: i + BATCH_SIZE]
             stats.update(await asyncio.gather(*(self.sync_one(kind, tmdb_id) for tmdb_id in batch)))
+
             logger.info(
                 "tmdb %s: %d/%d, %s, %.0fs",
                 kind,
@@ -52,6 +54,7 @@ class TMDBSyncService:
                 format_stats(stats),
                 time.monotonic() - started,
             )
+
         return stats
 
     async def sync_one(self, kind: TMDBKind, tmdb_id: int) -> SyncResult:
@@ -61,15 +64,20 @@ class TMDBSyncService:
                 return SyncResult.saved
 
             tv = await self.tmdb.tv(tmdb_id)
+
             if tv.type in self.skip_tv_types:
                 await self.state.add_skipped(kind, tmdb_id)
                 return SyncResult.skipped
+
             seasons = await self.tmdb.seasons(tmdb_id, regular_season_numbers(tv))
             await self.catalog.save_tv(tv, seasons)
+
             return SyncResult.saved
+
         except TMDBNotFound:
-            logger.info("tmdb %s/%d: not found", kind, tmdb_id)
+            logger.warning("tmdb %s/%d: not found", kind, tmdb_id)
             return SyncResult.not_found
+
         except Exception:
             # один битый тайтл не должен останавливать всю пачку
             logger.exception("tmdb %s/%d: failed", kind, tmdb_id)
