@@ -13,6 +13,8 @@ class User(IdMixin, CreatedAtMixin, Base):
 
     telegram_id: Mapped[int | None] = mapped_column(BigInteger, unique=True)
     username: Mapped[str | None] = mapped_column(CITEXT, unique=True)
+    email: Mapped[str | None] = mapped_column(CITEXT, unique=True)
+    password_hash: Mapped[str | None] = mapped_column(Text)
     display_name: Mapped[str] = mapped_column(Text)
     avatar_url: Mapped[str | None] = mapped_column(Text)
     locale: Mapped[str] = mapped_column(Text, server_default="ru")

@@ -9,6 +9,9 @@ dependencies = [
     "uvicorn[standard]>=0.30",
     "httpx>=0.27",
     "redis>=5",
+    "pyjwt>=2.9",
+    "pwdlib[argon2]>=0.2",
+    "email-validator>=2.2",
 ]
 
 [tool.uv.sources]
