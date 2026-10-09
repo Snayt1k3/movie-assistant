@@ -141,3 +141,4 @@ db_data
 .env
 logs/
 .vscode/
+./design
