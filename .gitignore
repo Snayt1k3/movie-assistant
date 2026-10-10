@@ -142,3 +142,5 @@ db_data
 logs/
 .vscode/
 ./design/
+design
+design/
