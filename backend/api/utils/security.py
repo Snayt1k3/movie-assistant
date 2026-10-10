@@ -3,7 +3,7 @@ import hashlib
 import secrets
 
 import jwt
-from exceptions import InvalidAccessToken
+from exceptions import InvalidAccessTokenError
 from pwdlib import PasswordHash
 
 _password_hash = PasswordHash.recommended()
@@ -29,9 +29,9 @@ def decode_access_token(token: str, secret: str, algorithm: str) -> int:
             token, secret, algorithms=[algorithm], options={"require": ["sub", "exp"]}
         )
     except jwt.PyJWTError as e:
-        raise InvalidAccessToken from e
+        raise InvalidAccessTokenError from e
     if payload.get("type") != "access":
-        raise InvalidAccessToken
+        raise InvalidAccessTokenError
     return int(payload["sub"])
 
 

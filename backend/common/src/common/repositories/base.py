@@ -1,6 +1,16 @@
 from typing import Any
 
-from sqlalchemy import ColumnElement, Delete, Select, Update, delete, insert, select, update
+from sqlalchemy import (
+    ColumnElement,
+    Delete,
+    Select,
+    Update,
+    delete,
+    func,
+    insert,
+    select,
+    update,
+)
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from common.interfaces import AbstractRepository
@@ -34,6 +44,11 @@ class SQLAlchemyRepository[ModelT: Base](AbstractRepository[ModelT]):
         stmt = self._filter(select(self.model), filters)
         res = await self.session.execute(stmt)
         return list(res.scalars().all())
+
+    async def count(self, **filters: Any) -> int:
+        stmt = self._filter(select(func.count()).select_from(self.model), filters)
+        res = await self.session.execute(stmt)
+        return res.scalar_one()
 
     async def find_all(self) -> list[ModelT]:
         res = await self.session.execute(select(self.model))

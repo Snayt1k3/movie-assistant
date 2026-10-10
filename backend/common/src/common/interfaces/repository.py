@@ -32,6 +32,11 @@ class AbstractRepository[ModelT](ABC):
         raise NotImplementedError
 
     @abstractmethod
+    async def count(self, **filters: Any) -> int:
+        """Посчитать сущности, подходящие под фильтры, см. find_many."""
+        raise NotImplementedError
+
+    @abstractmethod
     async def find_all(self) -> list[ModelT]:
         """Вернуть список всех сущностей."""
         raise NotImplementedError

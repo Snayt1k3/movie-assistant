@@ -19,17 +19,27 @@ def get_auth_service() -> AuthService:
     return _auth_service
 
 
-async def get_current_user(
+async def get_optional_user(
     credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(_bearer)],
     auth: Annotated[AuthService, Depends(get_auth_service)],
-) -> User:
+) -> User | None:
+    """Пользователь, если токен передан. Битый токен всё равно 401, а не аноним."""
     if credentials is None:
-        raise unauthorized()
+        return None
     try:
         return await auth.authenticate(credentials.credentials)
     except AuthError as e:
         raise unauthorized() from e
 
 
+async def get_current_user(
+    user: Annotated[User | None, Depends(get_optional_user)],
+) -> User:
+    if user is None:
+        raise unauthorized()
+    return user
+
+
 AuthServiceDep = Annotated[AuthService, Depends(get_auth_service)]
 CurrentUser = Annotated[User, Depends(get_current_user)]
+OptionalUser = Annotated[User | None, Depends(get_optional_user)]

@@ -1,7 +1,7 @@
 from typing import Annotated
 
 from deps import AuthServiceDep
-from exceptions import AuthError, EmailTaken
+from exceptions import AuthError, EmailTakenError
 from fastapi import APIRouter, Header, HTTPException, status
 from schemas.auth import LoginIn, RefreshIn, RegisterIn, TelegramLoginIn, TokenPair
 from utils.http import unauthorized
@@ -17,7 +17,7 @@ async def register(
 ) -> TokenPair:
     try:
         return await auth.register(body.email, body.password, body.display_name, user_agent)
-    except EmailTaken as e:
+    except EmailTakenError as e:
         raise HTTPException(status.HTTP_409_CONFLICT, "Email already registered") from e
 
 

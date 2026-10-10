@@ -2,9 +2,9 @@ class AuthError(Exception):
     """Не удалось подтвердить личность: неверные данные, токен или подпись."""
 
 
-class EmailTaken(Exception):
+class EmailTakenError(Exception):
     pass
 
 
-class InvalidAccessToken(Exception):
+class InvalidAccessTokenError(Exception):
     pass

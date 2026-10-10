@@ -2,7 +2,7 @@ import datetime
 from collections.abc import Callable
 
 from config import Settings
-from exceptions import AuthError, EmailTaken, InvalidAccessToken
+from exceptions import AuthError, EmailTakenError, InvalidAccessTokenError
 from schemas.auth import TelegramLoginIn, TokenPair
 from sqlalchemy.exc import IntegrityError
 from utils import security
@@ -13,8 +13,8 @@ from common.models import User
 
 
 class AuthService:
-    def __init__(self, uow_factory: Callable[[], AbstractUow], settings: Settings):
-        self.uow_factory = uow_factory
+    def __init__(self, uow: Callable[[], AbstractUow], settings: Settings):
+        self.uow = uow
         self.settings = settings
         # сверяем пароль и для несуществующего email, чтобы по времени ответа
         # нельзя было узнать, зарегистрирован ли адрес
@@ -23,9 +23,9 @@ class AuthService:
     async def register(
         self, email: str, password: str, display_name: str, user_agent: str | None
     ) -> TokenPair:
-        async with self.uow_factory() as uow:
+        async with self.uow() as uow:
             if await uow.users.find_one(email=email):
-                raise EmailTaken
+                raise EmailTakenError
             try:
                 user = await uow.users.add_one(
                     email=email,
@@ -33,11 +33,11 @@ class AuthService:
                     display_name=display_name,
                 )
             except IntegrityError as e:
-                raise EmailTaken from e
+                raise EmailTakenError from e
             return await self._issue_tokens(uow, user.id, user_agent)
 
     async def login(self, email: str, password: str, user_agent: str | None) -> TokenPair:
-        async with self.uow_factory() as uow:
+        async with self.uow() as uow:
             user = await uow.users.find_one(email=email)
             password_hash = user.password_hash if user and user.password_hash else self._dummy_hash
             password_ok = security.verify_password(password, password_hash)
@@ -53,7 +53,7 @@ class AuthService:
         if datetime.datetime.now(datetime.UTC) - signed_at > self.settings.telegram_auth_max_age:
             raise AuthError
 
-        async with self.uow_factory() as uow:
+        async with self.uow() as uow:
             user = await uow.users.find_one(telegram_id=data.id)
             if user is None:
                 display_name = " ".join(filter(None, [data.first_name, data.last_name]))
@@ -73,7 +73,7 @@ class AuthService:
         """
         token_hash = security.hash_refresh_token(refresh_token)
         now = datetime.datetime.now(datetime.UTC)
-        async with self.uow_factory() as uow:
+        async with self.uow() as uow:
             # отзываем одним UPDATE, чтобы два параллельных refresh не получили по паре
             claimed = await uow.refresh_tokens.update_many(
                 {"token_hash": token_hash, "revoked_at": None}, revoked_at=now
@@ -92,7 +92,7 @@ class AuthService:
             return await self._issue_tokens(uow, user.id, user_agent)
 
     async def logout(self, refresh_token: str) -> None:
-        async with self.uow_factory() as uow:
+        async with self.uow() as uow:
             await uow.refresh_tokens.update_many(
                 {"token_hash": security.hash_refresh_token(refresh_token), "revoked_at": None},
                 revoked_at=datetime.datetime.now(datetime.UTC),
@@ -104,9 +104,9 @@ class AuthService:
             user_id = security.decode_access_token(
                 access_token, self.settings.jwt_secret, self.settings.jwt_algorithm
             )
-        except InvalidAccessToken as e:
+        except InvalidAccessTokenError as e:
             raise AuthError from e
-        async with self.uow_factory() as uow:
+        async with self.uow() as uow:
             user = await uow.users.find_one(id=user_id)
         if user is None or user.deleted_at:
             raise AuthError
