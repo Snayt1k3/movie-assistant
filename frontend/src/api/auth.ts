@@ -1,7 +1,8 @@
 import { z } from "zod";
 import { request } from "./client";
 import { clearTokens, setTokens, getRefreshToken } from "./tokens";
-import type { TokenPair, RegisterIn } from "./types";
+import type { TokenPair, RegisterIn, LoginIn } from "./types";
+
 
 const TokenPairSchema = z.object({
   access_token: z.string(),
@@ -65,7 +66,7 @@ export function refresh(): Promise<RefreshResult> {
 
 export type RegisterField = keyof RegisterIn;
 
-function isRegisterField(x: unknown): x is RegisterField {
+export function isRegisterField(x: unknown): x is RegisterField {
   return x === "email" || x === "password" || x === "display_name";
 }
 
@@ -93,13 +94,7 @@ export async function register(body: RegisterIn): Promise<RegisterResult> {
     case "network_error":
       return { kind: "unavailable", message: r.message };
     case "ok": {
-      const parsed = TokenPairSchema.safeParse(r.data);
-      if (!parsed.success) {
-        console.error(parsed.error);
-        return { kind: "unavailable", message: parsed.error.message };
-      }
-      setTokens(parsed.data);
-      return { kind: "ok" };
+      return storeTokens(r.data) ? { kind: "ok" } : { kind: "unavailable", message: "bad token response" };
     }
     case "http_error":
       if (r.status === 409) return { kind: "invalid", fields: { email: "email_taken" } };
@@ -128,4 +123,39 @@ function parseValidation(body: unknown): RegisterResult {
   }
 
   return { kind: "invalid", fields };
+}
+
+// true — токены сохранены; false — ответ не прошёл схему (залогировано)
+function storeTokens(data: unknown): boolean {
+  const parsed = TokenPairSchema.safeParse(data);
+  if (!parsed.success) {
+    console.error(parsed.error);
+    return false;
+  }
+  setTokens(parsed.data);
+  return true;
+}
+
+// ─── login ───
+
+export type LoginResult =
+  | { kind: "ok" }
+  | { kind: "bad_credentials" }
+  | { kind: "unavailable"; message: string };
+
+export async function login(body: LoginIn): Promise<LoginResult> {
+  const r = await request("POST", "/api/v1/auth/login", body);
+  switch (r.kind) {
+    case "network_error":
+      return { kind: "unavailable", message: r.message };
+    case "ok":
+      return storeTokens(r.data) ? { kind: "ok" } : { kind: "unavailable", message: "bad token response" };
+    case "http_error":
+      if (r.status === 401) return {kind: "bad_credentials"};
+      return { kind: "unavailable", message: `HTTP ${r.status}` };
+    default: {
+      const _exhaustive: never = r;
+      return _exhaustive;
+    }
+  }
 }

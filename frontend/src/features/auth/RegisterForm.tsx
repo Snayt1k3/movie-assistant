@@ -4,6 +4,7 @@ import { register } from "../../api/auth";
 import type { FieldErrors } from "../../api/auth";
 import type { RegisterIn } from "../../api/types";
 import { fieldErrorLabel, fieldLabels } from "./labels";
+import { RegisterSchema, toFieldErrors } from "./schema";
 
 type Status = 
     | {kind: "idle"}
@@ -24,9 +25,16 @@ export function RegisterForm() {
 }
   async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus({ kind: "submitting" });
 
-    const r = await register(values);
+    const parsed = RegisterSchema.safeParse(values);
+    if (!parsed.success) {
+        setStatus({ kind: "invalid", fields: toFieldErrors(parsed.error)});
+        return;           // на сервер не идём
+    }
+
+    setStatus({ kind: "submitting" });
+    const r = await register(parsed.data);   // values или parsed.data — что отправлять?
+
     switch (r.kind) {
       case "ok":
         setStatus({ kind: "done" });

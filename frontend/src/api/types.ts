@@ -8,4 +8,5 @@ export type LibraryStatus = S["LibraryStatus"];
 export type LibraryPage = S["Page_LibraryItemOut_"]
 
 export type TokenPair = S["TokenPair"];
-export type RegisterIn = S["RegisterIn"]
+export type RegisterIn = S["RegisterIn"];
+export type LoginIn = S["LoginIn"];
