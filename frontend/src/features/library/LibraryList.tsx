@@ -3,14 +3,10 @@ import { getLibrary } from "../../api/library";
 import type { LibraryPage } from "../../api/types";
 import { itemLabel, statusLabels } from "./labels";
 
+type State =
+  { kind: "loading" } | { kind: "error"; message: string } | { kind: "ready"; page: LibraryPage };
 
-type State = 
-    | { kind: "loading"}
-    | { kind: "error", message: string}
-    | { kind: "ready", page: LibraryPage}
-
-
-type Props = { userRef: string}
+type Props = { userRef: string };
 
 export function LibraryList({ userRef }: Props) {
   const [state, setState] = useState<State>({ kind: "loading" });
@@ -20,9 +16,7 @@ export function LibraryList({ userRef }: Props) {
     getLibrary(userRef).then((r) => {
       if (cancelled) return;
       setState(
-        r.kind === "ok"
-          ? { kind: "ready", page: r.data }
-          : { kind: "error", message: r.message },
+        r.kind === "ok" ? { kind: "ready", page: r.data } : { kind: "error", message: r.message },
       );
     });
     return () => {

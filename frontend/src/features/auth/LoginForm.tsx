@@ -66,8 +66,13 @@ export function LoginForm() {
       <div>
         <label>
           {fieldLabels.email}
-          <input name="email" type="email" autoComplete="email"
-                 value={values.email} onChange={handleChange} />
+          <input
+            name="email"
+            type="email"
+            autoComplete="email"
+            value={values.email}
+            onChange={handleChange}
+          />
         </label>
         {errors.email !== undefined && <p>{fieldErrorLabel("email", errors.email)}</p>}
       </div>
@@ -75,15 +80,22 @@ export function LoginForm() {
       <div>
         <label>
           {fieldLabels.password}
-          <input name="password" type="password" autoComplete="current-password"
-                 value={values.password} onChange={handleChange} />
+          <input
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            value={values.password}
+            onChange={handleChange}
+          />
         </label>
         {errors.password !== undefined && <p>{fieldErrorLabel("password", errors.password)}</p>}
       </div>
 
       {status.kind === "failed" && <p>Не удалось войти: {status.message}</p>}
 
-      <button type="submit" disabled={status.kind === "submitting"}>Войти</button>
+      <button type="submit" disabled={status.kind === "submitting"}>
+        Войти
+      </button>
     </form>
   );
 }

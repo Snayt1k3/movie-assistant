@@ -3,7 +3,6 @@ import { request } from "./client";
 import { clearTokens, setTokens, getRefreshToken } from "./tokens";
 import type { TokenPair, RegisterIn, LoginIn } from "./types";
 
-
 const TokenPairSchema = z.object({
   access_token: z.string(),
   refresh_token: z.string(),
@@ -94,7 +93,9 @@ export async function register(body: RegisterIn): Promise<RegisterResult> {
     case "network_error":
       return { kind: "unavailable", message: r.message };
     case "ok": {
-      return storeTokens(r.data) ? { kind: "ok" } : { kind: "unavailable", message: "bad token response" };
+      return storeTokens(r.data)
+        ? { kind: "ok" }
+        : { kind: "unavailable", message: "bad token response" };
     }
     case "http_error":
       if (r.status === 409) return { kind: "invalid", fields: { email: "email_taken" } };
@@ -139,9 +140,7 @@ function storeTokens(data: unknown): boolean {
 // ─── login ───
 
 export type LoginResult =
-  | { kind: "ok" }
-  | { kind: "bad_credentials" }
-  | { kind: "unavailable"; message: string };
+  { kind: "ok" } | { kind: "bad_credentials" } | { kind: "unavailable"; message: string };
 
 export async function login(body: LoginIn): Promise<LoginResult> {
   const r = await request("POST", "/api/v1/auth/login", body);
@@ -149,9 +148,11 @@ export async function login(body: LoginIn): Promise<LoginResult> {
     case "network_error":
       return { kind: "unavailable", message: r.message };
     case "ok":
-      return storeTokens(r.data) ? { kind: "ok" } : { kind: "unavailable", message: "bad token response" };
+      return storeTokens(r.data)
+        ? { kind: "ok" }
+        : { kind: "unavailable", message: "bad token response" };
     case "http_error":
-      if (r.status === 401) return {kind: "bad_credentials"};
+      if (r.status === 401) return { kind: "bad_credentials" };
       return { kind: "unavailable", message: `HTTP ${r.status}` };
     default: {
       const _exhaustive: never = r;
